@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "jsx": "react-jsx",
+      "target": "es5",
+      "lib": ["dom", "dom.iterable", "esnext"],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "noFallthroughCasesInSwitch": true,
+      "rootDir": "src",
+      "resolveJsonModule": true,
+      "esModuleInterop": true
+    },
+    "exclude": ["node_modules"]
+  }
+  
