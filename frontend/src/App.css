@@ -1,0 +1,28 @@
+ .app {
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+   min-height: 100vh;
+  background: url('img/Rectangle.svg');
+    background-size: cover;
+  background-position: center;
+  width:100vw;
+}
+.top-20{
+top:20%;
+}
+.start-25{
+  left:25%;
+}
+.imgGroup{
+  align-self:unset;
+
+
+  
+}
+.imgGroup img{
+margin-top: 5rem;
+width:88% !important;
+}
+
