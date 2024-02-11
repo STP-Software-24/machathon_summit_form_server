@@ -1,4 +1,5 @@
 import express,{ RequestHandler, ErrorRequestHandler } from 'express';
+import cors from 'cors';
 //import { dbPool } from './database';
 
 const bodyParser = require('body-parser')
@@ -15,7 +16,7 @@ export const dbPool = new Pool({
 const app = express();
 
 //console.log(process.env.PROD_DB_CONNECTION_STRING)
-
+app.use(cors());
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -87,4 +88,6 @@ app.use(errHandler);
 
 
 // Run server on port 
-app.listen(process.env.SERVER_PORT);
+app.listen(process.env.SERVER_PORT, () => {
+    console.log(`Listening on port ${process.env.SERVER_PORT}`)}
+    );

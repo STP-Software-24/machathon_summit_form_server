@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dbPool = void 0;
 var express_1 = __importDefault(require("express"));
+var cors_1 = __importDefault(require("cors"));
 //import { dbPool } from './database';
 var bodyParser = require('body-parser');
 var _a = require('express-validator'), body = _a.body, validationResult = _a.validationResult;
@@ -12,14 +13,10 @@ require('dotenv').config();
 var pg_1 = require("pg");
 exports.dbPool = new pg_1.Pool({
     connectionString: process.env.PROD_DB_CONNECTION_STRING
-    // user: process.env.DB_USER || 'postgres',
-    // host: process.env.DB_HOST || 'localhost',
-    // database: process.env.DB_DATABASE,
-    // password: process.env.DB_PASSWORD || 'postgres',
-    // port: Number(process.env.DB_PORT) || DEFAULT_PORT
 });
 var app = (0, express_1.default)();
 //console.log(process.env.PROD_DB_CONNECTION_STRING)
+app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
