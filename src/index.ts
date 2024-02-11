@@ -76,6 +76,7 @@ app.get('/', (req, res) => {
 // A cron job endpoint to keep the server running
 app.get('/cron', (req, res) => {
     console.log("WAKE UP");
+    res.status(200).json(JSON.parse('{"state": "success}'));
 })
 
 
