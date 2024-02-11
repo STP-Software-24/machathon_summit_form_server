@@ -25,7 +25,7 @@ A single table to store attendees information:
 ```bash
 CREATE TABLE machathon_summit (
   name VARCHAR (50) NOT NULL,
-  phone NUMERIC NOT NULL,
+  phone VARCHAR(20) NOT NULL,
   email VARCHAR (255) PRIMARY KEY,
   national_id NUMERIC(14) UNIQUE,
   university VARCHAR(255) NOT NULL,
