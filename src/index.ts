@@ -1,15 +1,25 @@
 import express,{ RequestHandler, ErrorRequestHandler } from 'express';
-import { dbPool } from './database';
+//import { dbPool } from './database';
 
 const bodyParser = require('body-parser')
 const { body, validationResult } = require('express-validator');
 
 require('dotenv').config();
 
+import { Pool } from 'pg';
+
+export const dbPool = new Pool({
+    connectionString: process.env.PROD_DB_CONNECTION_STRING
+    // user: process.env.DB_USER || 'postgres',
+    // host: process.env.DB_HOST || 'localhost',
+    // database: process.env.DB_DATABASE,
+    // password: process.env.DB_PASSWORD || 'postgres',
+    // port: Number(process.env.DB_PORT) || DEFAULT_PORT
+});
 
 const app = express();
 
-//console.log(process.env.PROD_DB_CONNECTION_STRING)
+console.log(process.env.PROD_DB_CONNECTION_STRING)
 
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }));
