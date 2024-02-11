@@ -5,7 +5,9 @@
   "main": "./src/index.ts",
   "scripts": {
     "start-dev": "nodemon ./src/index.ts",
-    "start": "ts-node ./src/index.ts"
+    "start": "ts-node ./src/index.ts",
+    "build": "npm install && npx tsc",
+    "start-node": "node ./dist/index.js"
   },
   "author": "STP24",
   "license": "ISC",
