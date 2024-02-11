@@ -2,11 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "./src/index.ts",
   "scripts": {
-    "start-dev": "nodemon ./src/index.ts"
+    "start-dev": "nodemon ./src/index.ts",
+    "start": "ts-node ./src/index.ts"
   },
-  "author": "",
+  "author": "STP24",
   "license": "ISC",
   "dependencies": {
     "@types/pg": "^8.11.0",
