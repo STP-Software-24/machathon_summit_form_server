@@ -47,7 +47,7 @@ app.post('/register', body('email').isEmail().normalizeEmail(), body('national_i
     //
     res.status(200).json({
         success: true,
-        message: 'successful registration',
+        message: 'successful registration'
     });
 });
 // Get all registered people
@@ -62,6 +62,9 @@ app.get('/', function (req, res) {
 // A cron job endpoint to keep the server running
 app.get('/cron', function (req, res) {
     console.log("WAKE UP");
+    res.status(200).json({
+        state: "success"
+    });
 });
 // Report server errors
 var errHandler = function (error, req, res, next) {
@@ -69,5 +72,7 @@ var errHandler = function (error, req, res, next) {
     return res.status(500).send("An unexpected error has occurred, please try again.");
 };
 app.use(errHandler);
-// Run server on port 
-app.listen(process.env.SERVER_PORT);
+// Run server on server port 
+app.listen(process.env.SERVER_PORT, function () {
+    console.log("Listening on port ".concat(process.env.SERVER_PORT));
+});

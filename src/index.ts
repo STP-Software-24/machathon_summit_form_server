@@ -59,7 +59,7 @@ body("faculty").isString(),
     //
     res.status(200).json({
         success: true,
-        message: 'successful registration',
+        message: 'successful registration'
     })
 });
 
@@ -76,7 +76,9 @@ app.get('/', (req, res) => {
 // A cron job endpoint to keep the server running
 app.get('/cron', (req, res) => {
     console.log("WAKE UP");
-    res.status(200).json(JSON.parse('{"state": "success}'));
+    res.status(200).json({
+        state: "success"
+    });
 })
 
 
