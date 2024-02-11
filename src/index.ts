@@ -19,7 +19,7 @@ export const dbPool = new Pool({
 
 const app = express();
 
-console.log(process.env.PROD_DB_CONNECTION_STRING)
+//console.log(process.env.PROD_DB_CONNECTION_STRING)
 
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -76,6 +76,11 @@ app.get('/', (req, res) => {
         res.status(200).json(results.rows);
     })
 });
+
+// A cron job endpoint to keep the server running
+app.get('/cron', (req, res) => {
+    console.log("WAKE UP");
+})
 
 
 // Report server errors
