@@ -41,7 +41,10 @@ app.post('/register', body('email').isEmail().normalizeEmail(), body('national_i
     //
     exports.dbPool.query(insertQuery, [name, phone_number, email, national_id, university, faculty, grad_year], function (error, results) {
         if (error) {
-            throw error;
+            return res.status(500).json({
+                success: false,
+                message: "internal server error"
+            });
         }
     });
     //
@@ -51,12 +54,18 @@ app.post('/register', body('email').isEmail().normalizeEmail(), body('national_i
     });
 });
 // Get all registered people
-app.get('/', function (req, res) {
+app.get('/all', function (req, res) {
     exports.dbPool.query('SELECT * FROM stp.machathon_summit;', function (error, results) {
         if (error) {
+            res.status(500).json({
+                success: false,
+                message: 'internal server error'
+            });
             throw error;
         }
-        res.status(200).json(results.rows);
+        else {
+            res.status(200).json(results.rows);
+        }
     });
 });
 // A cron job endpoint to keep the server running
@@ -64,6 +73,18 @@ app.get('/cron', function (req, res) {
     console.log("WAKE UP");
     res.status(200).json({
         state: "success"
+    });
+});
+// an endpoint to check if the user already exists in the database
+app.get("/", function (req, res) {
+    var email = req.query.email;
+    var nID = req.query.nid;
+    var qu = "SELECT * FROM stp.machathon_summit WHERE email=".concat(email, " OR national_id=").concat(nID, ";");
+    exports.dbPool.query(qu, function (error, results) {
+        if (error) {
+            throw error;
+        }
+        res.status(200).json(results.rows);
     });
 });
 // Report server errors
