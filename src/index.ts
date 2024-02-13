@@ -10,7 +10,7 @@ import { Pool } from 'pg';
 
 // TODO: Change to prod DB
 export const dbPool = new Pool({
-    connectionString: process.env.TEST_DB_CONNECTION_STRING
+    connectionString: process.env.PROD_DB_CONNECTION_STRING
 });
 
 const app = express();
