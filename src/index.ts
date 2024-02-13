@@ -34,6 +34,7 @@ body("university").isString(),
 body("faculty").isString(),
 
 (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     const errors = validationResult(req);
     // validate data
     if (!errors.isEmpty()||(req.body['grad_year']>2033|| req.body['grad_year']<1990)) {
@@ -65,6 +66,7 @@ body("faculty").isString(),
 
 // Get all registered people
 app.get('/all', (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     dbPool.query('SELECT * FROM stp.machathon_summit;', (error, results) => {
         if(error){
             res.status(500).json({
@@ -82,6 +84,7 @@ app.get('/all', (req, res) => {
 
 // A cron job endpoint to keep the server running
 app.get('/cron', (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     console.log("WAKE UP");
     res.status(200).json({
         state: "success"
@@ -91,10 +94,11 @@ app.get('/cron', (req, res) => {
 // an endpoint to check if the user already exists in the database
 app.get(`/`, async (req, res) => {
     const email: string = decodeURI(req.query.email as string);
+    console.log(email);
     const nID = req.query.nid;
     const qu = "SELECT * FROM stp.machathon_summit WHERE email=$1 OR national_id=$2;"
     //
-    await dbPool.query(qu, [email, nID], (error, results) => {
+    dbPool.query(qu, [email, nID], (error, results) => {
         if(error){
             throw error;
         }
@@ -105,6 +109,7 @@ app.get(`/`, async (req, res) => {
 
 // Report server errors
 const errHandler: ErrorRequestHandler = (error, req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     console.error("uncaught exception", error);
     return res.status(500).send("An unexpected error has occurred, please try again.");
 }
